@@ -1,0 +1,5 @@
+Object file creation : g++ -std=c++11 -c *.cpp -I ..\..\..\tmcommon\include -I ..\..\dl\include -I ..\include
+
+Library creation : ar rcs ..\lib\inventorybl.lib *.o
+
+Executable File Creation : g++ -std=c++11 unitOfMeasurementCount.cpp -o unitOfMeasurementCount.exe -I ..\..\..\tmcommon\include -I ..\..\dl\include -I ..\include -L ..\..\..\tmcommon\lib -L ..\..\dl\lib -L ..\lib -l inventorybl -l inventorydl -l tmcommon

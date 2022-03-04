@@ -1,0 +1,32 @@
+#ifndef __$__IUOMMANAGER__bl
+#define __$__IUOMMANAGER__bl 123
+#include<iostream>
+#include<bl/iuom>
+#include<forward_list>
+#include<bl/uom>
+using namespace std;
+namespace inventory
+{
+namespace business_layer
+{
+namespace abc
+{
+class IUnitOfMeasurementManager
+{
+public:
+virtual void addUnitOfMeasurement(abc::IUnitOfMeasurement *unitOfMeasurement)=0;
+virtual void updateUnitOfMeasurement(abc::IUnitOfMeasurement *unitOfMeasurement)=0;
+virtual void removeUnitOfMeasurementByCode(int code)=0;
+virtual void removeUnitOfMeasurementByTitle(string title)=0;
+virtual IUnitOfMeasurement * getUnitOfMeasurementByCode(int code)=0;
+virtual IUnitOfMeasurement * getUnitOfMeasurementByTitle(string title)=0;
+virtual forward_list<IUnitOfMeasurement * > *getAll()=0;
+virtual int unitOfMeasurementCodeExists(int code)=0;
+virtual int unitOfMeasurementTitleExists(string title)=0;
+virtual int getUnitOfMeasurementCount()=0;
+};
+}
+}
+}
+
+#endif

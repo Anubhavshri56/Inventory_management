@@ -1,0 +1,54 @@
+#ifndef __$__UOMMANAGER__bl
+#define __$__UOMMANAGER__bl 123
+#include<iostream>
+#include<bl/iuommanager>
+#include<bl/iuom>
+#include<bl/uom>
+#include<common/stringutils>
+#include<map>
+#include<forward_list>
+using namespace std;
+namespace inventory
+{
+namespace business_layer
+{
+class unitOfMeasurementTitleComparator
+{
+public:
+int operator()(string *left,string *right);
+};
+class unitOfMeasurementManager:public abc::IUnitOfMeasurementManager
+{
+private:
+class _unitOfMeasurement
+{
+public:
+int code;
+string *title;
+};
+class DataModel
+{
+public:
+map<int,_unitOfMeasurement *> codeWiseMap;
+map<string *,_unitOfMeasurement *,unitOfMeasurementTitleComparator> titleWiseMap;
+DataModel();
+~DataModel();
+void populateDataStructure();
+};
+static DataModel dataModel;
+public:
+unitOfMeasurementManager();
+void addUnitOfMeasurement(abc::IUnitOfMeasurement *unitOfMeasurement);
+void updateUnitOfMeasurement(abc::IUnitOfMeasurement *unitOfMeasurement);
+void removeUnitOfMeasurementByCode(int code);
+void removeUnitOfMeasurementByTitle(string title);
+abc::IUnitOfMeasurement * getUnitOfMeasurementByCode(int code);
+abc::IUnitOfMeasurement * getUnitOfMeasurementByTitle(string title);
+forward_list<abc::IUnitOfMeasurement * > *getAll();
+int unitOfMeasurementCodeExists(int code);
+int unitOfMeasurementTitleExists(string title);
+int getUnitOfMeasurementCount();
+};
+}
+}
+#endif

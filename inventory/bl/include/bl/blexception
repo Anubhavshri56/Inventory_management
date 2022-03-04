@@ -1,0 +1,34 @@
+#ifndef __$__BLException__
+#define __$__BLException__ 123
+#include<iostream>
+#include<map>
+using namespace std;
+namespace inventory
+{
+namespace business_layer
+{
+class BLException:public exception
+{
+private:
+string genericException;
+map<string,string> exceptions;
+public:
+BLException();
+BLException(string genericException);
+BLException(const BLException &other);
+BLException & operator=(const BLException &other);
+virtual ~BLException() throw();
+const char * what() const throw();
+int hasGenericException();
+void setGenericException(string genericException);
+string getGenericException();
+void addPropertyException(string property,string exception);
+string getPropertyException(string property);
+int hasPropertyException(string property);
+int hasPropertyExceptions();
+int hasExceptions();
+int getPropertyExceptionCount();
+};
+}
+}
+#endif
